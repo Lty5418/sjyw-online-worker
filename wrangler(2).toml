@@ -1,0 +1,14 @@
+name = "sjyw-online-worker"
+main = "src/index.ts"
+compatibility_date = "2024-11-01"
+workers_dev = true
+
+[[durable_objects.bindings]]
+name = "GAME_ROOM"
+class_name = "GameRoom"
+
+[[migrations]]
+tag = "v1"
+# Cloudflare Workers Free plan 的 Durable Objects 必须使用 SQLite 后端命名空间。
+# 这里不能用 new_classes，否则部署会报 code 10097。
+new_sqlite_classes = ["GameRoom"]
